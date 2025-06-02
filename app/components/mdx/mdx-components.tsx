@@ -6,7 +6,7 @@ import { cn } from "@/app/lib/utils";
 import * as Accordion from "@/app/base/accordion"
 import { Separator } from "@/app/base/separator";
 import * as Alert from "@/app/base/alert";
-import RemoteImage from 'next-export-optimize-images/remote-image' 
+import Image from "next/image";
 
 const MDXComponents = {
   ...Icons.icons,
@@ -82,8 +82,8 @@ const MDXComponents = {
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />
   ),
-  Image: ({ className, alt, ...props }: React.ComponentProps<typeof RemoteImage>) => (
-    <RemoteImage className={cn("rounded-md", className)} alt={alt} {...props} height={800} width={800} />
+  Image: ({ className, alt, ...props }: React.ComponentProps<typeof Image>) => (
+    <Image className={cn("rounded-md", className)} alt={alt} {...props} height={800} width={800} />
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <Separator className="my-4 md:my-8" {...props} />
