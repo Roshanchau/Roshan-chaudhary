@@ -2,8 +2,7 @@ import { IMAGES } from "@/app/constants/images";
 import { calculateTimeAgo } from "@/app/lib/calculate-time-ago";
 import { cn } from "@/app/lib/utils";
 import { Blog } from "@/app/types/blog.types";
-import Image from "next-export-optimize-images/image";
-import RemoteImage from 'next-export-optimize-images/remote-image'
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = Omit<Blog, "content"> & {
@@ -21,13 +20,14 @@ const PrimaryBlogCard = (props: Props) => {
       style={props.style}
     >
       <div className="flex w-full items-center justify-center overflow-hidden rounded-md lg:max-h-[320px] lg:max-w-[536px]">
-        <Link href={`/blogs/${props.slug}`} className="h-full w-full">
-          <RemoteImage
+        <Link href={`/Blogs/${props.slug}`} className="h-full w-full">
+          <Image
             className="h-full max-h-72 w-full rounded-md object-cover object-center"
             src={props.coverImage ?? ""}
             alt="hero"
             height={600}
             width={600}
+            loading="lazy"
           />
         </Link>
       </div>
@@ -36,14 +36,14 @@ const PrimaryBlogCard = (props: Props) => {
           {props.tags?.map((tag) => (
             <Link
               key={tag}
-              href={`/blogs/tags/${tag}`}
+              href={`/Blogs/tags/${tag}`}
               className="inline-flex rounded-full bg-purple-400/[0.08] px-3 py-1 text-sm font-medium text-purple-500 opacity-70"
             >
               {tag}
             </Link>
           ))}
         </div>
-        <Link href={`/blogs/${props.slug}`} className="hover:underline">
+        <Link href={`/Blogs/${props.slug}`} className="hover:underline">
           <h1 className="mb-4 text-lg font-bold sm:text-xl md:text-2xl xl:text-3xl">
             {props.title}
           </h1>
@@ -56,14 +56,14 @@ const PrimaryBlogCard = (props: Props) => {
           <div className="flex items-center gap-3">
             <div className="flex h-6 w-6 overflow-hidden rounded-full">
               <Image
-                src={IMAGES.avatar}
+                src={IMAGES.placeholders.avatar}
                 alt="user"
                 className="h-full w-full object-cover object-center"
                 height={80}
                 width={80}
               />
             </div>
-            <p className="text-sm">Tilak Thapa</p>
+            <p className="text-sm">Roshan Chaudhary</p>
           </div>
           <span className="flex h-[3px] w-[3px] rounded-full bg-gray-300" />
           <p className="text-sm">{calculateTimeAgo(props.publishedAt ?? "")}</p>

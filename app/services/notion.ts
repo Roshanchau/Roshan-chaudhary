@@ -13,7 +13,6 @@ export const getAllPages = async (
   query: Parameters<typeof notion.databases.query>[0]
 ): Promise<PageObjectResponse[] | undefined> => {
   try {
-    console.log("Fetching posts from Notion database this is query:", query);
     const pages = await notion.databases.query(query);
 
     const allPages = pages.results.filter(

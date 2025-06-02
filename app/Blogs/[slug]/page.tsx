@@ -9,21 +9,17 @@ import React from "react";
 import MDX from "@/app/components/mdx/mdx";
 import { getMdxContent } from "@/app/lib/get-mdx-content";
 import { getAllBlogs, getBlogBySlug } from "@/app/services/blog";
-import RemoteImage from 'next-export-optimize-images/remote-image'
 import { IMAGES } from "@/app/constants/images";
-import Image from "next-export-optimize-images/image";
+import Image from "next/image";
 
 type Props = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>; 
 };
 
+
 const Page = async ({ params }: Props) => {
-  const { slug } = await params;
-  console.log("Slug:", slug);
+  const { slug } = await params; 
   const blog = await getBlogBySlug(decodeURI(slug));
-  console.log("Blog:", blog);
 
   if (!blog) return <Error404 />;
 
@@ -32,13 +28,13 @@ const Page = async ({ params }: Props) => {
   } = await getMdxContent(blog.raw);
 
   return (
-    <div className="mt-12">
+    <div className="mt-12 mb-12">
       <section className="container mx-auto flex max-w-7xl flex-col items-center justify-center">
         <div className="flex max-w-5xl flex-col items-center justify-center gap-3 text-center">
           <div className="flex items-center gap-3">
             {blog.tags &&
               blog.tags.map((tag) => (
-                <Link key={tag} href={`/blogs/tags/${tag}`} className="w-fit">
+                <Link key={tag} href={`/Blogs/tags/${tag}`} className="w-fit">
                   <Badge variant={"outline"}>{tag}</Badge>
                 </Link>
               ))}
@@ -54,15 +50,16 @@ const Page = async ({ params }: Props) => {
           <div className="mt-4 flex items-center justify-center gap-4">
             <div className="flex h-10 w-10 overflow-hidden rounded-full">
               <Image
-                src={IMAGES.avatar}
+                src={IMAGES.placeholders.avatar}
                 alt="user"
                 className="h-full w-full rounded-full object-cover object-center"
                 height={80}
                 width={80}
+                loading="lazy"
               />
             </div>
             <div className="text-left">
-              <div className="text-base font-medium">Tilak Thapa</div>
+              <div className="text-base font-medium">Roshan Chaudhary</div>
               <div className="flex items-center gap-1.5 text-gray-600">
                 <p>
                   {new Date(blog.publishedAt ?? "").toLocaleDateString("en-US", {
@@ -72,17 +69,17 @@ const Page = async ({ params }: Props) => {
                     weekday: "short",
                   })}
                 </p>
-                <span className="flex h-[3px] w-[3px] rounded-full bg-gray-300" />
+                <span className="flex h-[3px] w-[3px] rounded-full" />
                 <p>{blog.readingTime}</p>
               </div>
             </div>
           </div>
         </div>
-        <RemoteImage
-          src={blog.coverImage ?? ""}
+        <Image
+          src={blog.coverImage || ""}
           alt="thumbnail"
           className={cn(
-            "mt-6 h-auto max-h-[500px] w-full max-w-5xl rounded-xl border border-gray-300 object-cover object-center shadow-md"
+            "mt-6 h-auto max-h-[500px] w-full max-w-5xl rounded-xl border border-gray-300  shadow-md"
           )}
           height={800}
           width={800}
@@ -107,15 +104,15 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   return {
     title: blog?.title,
     description: blog?.description,
-    authors: {
-      name: "Tilak Thapa",
+    authors: {    
+      name: "Rosahn Cahduahry",
       url: process.env.NEXT_PUBLIC_SELF_URL,
     },
-    keywords: [...(blog?.tags || []), "blog", "tilak thapa", "web development"],
+    keywords: [...(blog?.tags || []), "blog", "Roshan Chaudhary", "web development"],
     openGraph: {
       title: blog?.title,
       description: blog?.description,
-      url: `${process.env.NEXT_PUBLIC_SELF_URL} / blogs / ${slug}`,
+      url: `${process.env.NEXT_PUBLIC_SELF_URL}/Blogs/${slug}`,
       type: "article",
       images: [
         {
@@ -130,6 +127,7 @@ export async function generateStaticParams() {
   const posts = await getAllBlogs();
 
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: post.slug.trim(), 
   }));
 }
+

@@ -5,7 +5,7 @@ import Link from "next/link";
 const Footer= ()=>{
     return (
         <Container>
-            <div className=" px-2 flex flex-row items-center mx-6 gap-6 ml-[67px] ">
+            <div className=" px-2 flex flex-row items-center mx-6 gap-6 ml-[67px] mb-6">
                 <Link href={`https://github.com/Roshanchau`}><FaGithub size={25} /></Link>
                 <Link href={`https://www.linkedin.com/in/roshan-chaudhary-429381211/`}><FaLinkedin size={25}/></Link>
                 <Link href={`https://x.com/RoshanChau44463`}><FaTwitterSquare size={25}/></Link>

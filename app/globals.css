@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  background: linear-gradient(125.17deg, #272727 0%, #11101d 100%);
-  padding: 10px;
+  background: linear-gradient(125.17deg, #272727 0%, #11101d 100%) fixed;
+    padding: 10px;
     color: rgba(249, 244, 244, 0.848);
     font-family: Calibre, Inter, "San Francisco", "SF Pro Text", -apple-system, system-ui, sans-serif;
 
@@ -22,7 +22,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
 }
 
 html.white-bg {
