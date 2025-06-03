@@ -9,7 +9,6 @@ const Hero = () => {
   const { theme } = useThemeStore(); 
 
   
-  console.log("this is theme hai",theme);   
   return (
     <div className="flex-col items-center justify-center lg:text-left sm:text-center p-10">
       <div className="leading-[60px]">
