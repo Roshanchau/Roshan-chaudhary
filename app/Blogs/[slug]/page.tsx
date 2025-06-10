@@ -29,7 +29,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <div className="mt-12 mb-12">
-      <section className="container mx-auto flex max-w-7xl flex-col items-center justify-center">
+      <section className="container mx-auto flex max-w-2xl sm:max-w-4xl md:max-w-6xl lg:max-w-7xl flex-col items-center justify-center">
         <div className="flex max-w-5xl flex-col items-center justify-center gap-3 text-center">
           <div className="flex items-center gap-3">
             {blog.tags &&
@@ -39,7 +39,7 @@ const Page = async ({ params }: Props) => {
                 </Link>
               ))}
           </div>
-          <h1 className="mt-1 text-xl font-bold sm:text-2xl md:text-3xl xl:text-4xl">
+          <h1 className="mt-1 text-xl font-bold  sm:text-2xl md:text-3xl xl:text-4xl flex flex-col items-center justify-center">
             {blog.title}
           </h1>
           {blog.description && (
@@ -52,7 +52,7 @@ const Page = async ({ params }: Props) => {
               <Image
                 src={IMAGES.placeholders.avatar}
                 alt="user"
-                className="h-full w-full rounded-full object-cover object-center"
+                className="h-auto w-auto rounded-full object-cover object-center"
                 height={80}
                 width={80}
                 loading="lazy"
@@ -86,7 +86,7 @@ const Page = async ({ params }: Props) => {
         />
         <Separator className="mt-6 max-w-5xl" />
         <div className="mx-auto mt-12 flex w-full gap-16">
-          <MDX id="blog" className="mx-auto max-w-3xl">
+          <MDX id="blog" className="mx-auto max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl">
             {content}
           </MDX>
         </div>
