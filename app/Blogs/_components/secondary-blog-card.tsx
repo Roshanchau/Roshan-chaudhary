@@ -45,7 +45,7 @@ const SecondaryBlogCard = (props: Props) => {
         </Link>
         <div className="flex items-center gap-2.5">
           <p className="text-sm">
-            <div>By Tilak Thapa</div>
+            <div>By Roshan Chaudhary</div>
           </p>
           <span className="flex h-[3px] w-[3px] rounded-full bg-gray-300" />
           <p className="text-sm">{calculateTimeAgo(props.publishedAt ?? "")}</p>
