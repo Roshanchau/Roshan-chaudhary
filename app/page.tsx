@@ -3,7 +3,7 @@
 import Hero from "./components/hero"
 const page=()=> {
   return (
-    <div className={`flex-col items-center justify-center p-14 ml-40 `}>
+    <div className={`flex-col items-center justify-center lg:p-14 lg:ml-40`}>
       <Hero/>
     </div>
   )
