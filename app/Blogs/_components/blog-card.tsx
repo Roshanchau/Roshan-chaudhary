@@ -24,7 +24,7 @@ const BlogCard = (props: Props) => {
         <Link href={`/Blogs/${props.slug}`} className="h-full w-full">
           <Image
             className="h-full max-h-40 w-full rounded-md object-cover object-center"
-            src={props.coverImage ?? ""}
+            src={`/images/blog/${props.title?.replace(/\s+/g, "-")}.jpg`}
             alt="hero"
             height={600}
             width={600}

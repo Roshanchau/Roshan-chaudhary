@@ -1,9 +1,8 @@
+import { downloadNotionImage, replaceNotionImagesInMd } from "../lib/download-notion-image";
 import { Blog } from "@/app/types/blog.types";
 import readingTime from "reading-time";
 import { getAllPages , getSinglePage } from "./notion";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-import { extractImageUrlFromMd } from "../lib/extract-image-url-from-md";
-import addRemoteImage from "../lib/add-remote-image";
 
 const db_id= process.env.NOTION_BLOG_DATABASE_ID  as string;
 
@@ -62,19 +61,22 @@ export const getAllBlogs = async (): Promise<Array<Blog>> => {
 export const getBlogBySlug = async (slug: string): Promise<Blog | null> => {
   try {
     const blog = await getSinglePage(slug, db_id);
-    // console.log("hello from single page" , blog)
-
     if (!blog) return null;
 
     const properties = extractBlogProperties(blog.post);
-
     if (!properties) return null;
 
-    const raw = blog.markdown;
+    // Download Notion images and replace expiring URLs in markdown
+    const raw = await replaceNotionImagesInMd(blog.markdown);
 
-    const imagesFromMd = extractImageUrlFromMd(raw);
+    // Download cover image too (if it's a Notion S3 URL)
+    const localCover = await downloadNotionImage(properties.coverImage);
+    if (localCover) {
+      properties.coverImage = localCover;
+    }
 
-    await addRemoteImage([...imagesFromMd, properties.coverImage]);
+    // No longer needed — we're not using next-export-optimize-images for Notion images
+    // await addRemoteImage([...]) ← remove this
 
     return {
       readingTime: readingTime(raw).text,
@@ -86,7 +88,6 @@ export const getBlogBySlug = async (slug: string): Promise<Blog | null> => {
     return null;
   }
 };
-
 export const extractBlogProperties = (data: PageObjectResponse) => {
   const title =
     data.properties["title"] && data.properties["title"].type === "title"

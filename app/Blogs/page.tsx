@@ -1,22 +1,20 @@
 import React from "react";
 import PrimaryBlogCard from "./_components/primary-blog-card";
 import SecondaryBlogCard from "./_components/secondary-blog-card";
-import AllTags from "./_components/all-tags";
 import BlogCard from "./_components/blog-card";
-import unique from "../lib/unique";
 import Error404 from "../components/screens/404";
 import { Metadata } from "next";
 import { getAllBlogs } from "@/app/services/blog";
 
 const Page = async () => {
   const blogs = await getAllBlogs();
-  const tags = unique(
-    blogs
-      ?.map((blog) => {
-        return blog.tags;
-      })
-      ?.flat()
-  );
+  // const tags = unique(
+  //   blogs
+  //     ?.map((blog) => {
+  //       return blog.tags;
+  //     })
+  //     ?.flat()
+  // );
   return (
     <section className="container m-auto flex max-w-7xl flex-col gap-6 md:gap-12 xl:gap-24">
       {blogs.length === 0 && (
@@ -41,7 +39,7 @@ const Page = async () => {
       {blogs.length > 3 && (
         <div className="flex flex-col gap-5 md:gap-7 lg:flex-row xl:gap-24">
           {/* sidebar */}
-          <div className="bg-card animate-in-from-left flex h-fit w-full flex-col gap-3 rounded-md px-6 py-7 shadow-md delay-200 lg:w-72">
+          {/* <div className="bg-card animate-in-from-left flex h-fit w-full flex-col gap-3 rounded-md px-6 py-7 shadow-md delay-200 lg:w-72">
             <AllTags
               data={
                 tags
@@ -52,7 +50,7 @@ const Page = async () => {
                   })) || []
               }
             />
-          </div>
+          </div> */}
 
           {/* all remaining blogs */}
           <div className="flex w-full flex-col gap-6">

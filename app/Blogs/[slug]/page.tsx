@@ -76,7 +76,7 @@ const Page = async ({ params }: Props) => {
           </div>
         </div>
         <Image
-          src={blog.coverImage || ""}
+          src={`/images/blog/${blog.title?.replace(/\s+/g, "-")}.jpg`}
           alt="thumbnail"
           className={cn(
             "mt-6 h-auto max-h-[500px] w-full max-w-5xl rounded-xl border border-gray-300  shadow-md"
