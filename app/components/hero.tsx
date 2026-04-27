@@ -21,7 +21,7 @@ const Hero = () => {
           Roshan Chaudhary
         </h1>
         <h1
-          className={`md:text-[3.4375rem] text-[2.1875rem] text-[rgb(136,146,176)] ${theme === "light" ? "text-[rgba(53,176,148,0.59)]" : ""}`}
+          className={`md:text-[3.4375rem] text-[1.875rem] text-[rgb(136,146,176)] ${theme === "light" ? "text-[rgba(53,176,148,0.59)]" : ""}`}
         >
           Software Engineer
         </h1>
@@ -32,7 +32,7 @@ const Hero = () => {
           theme === "light" ? "text-neutral-400" : "text-[rgb(118,129,158)]"
         }`}
       >
-        Hey Hi👋 , Roshan Here. I love building , solving problems , figuring things out and learning something new everyday. I have experience in building scalable web applications incorporating best coding and security practices , scalable design patterns , microservices to deployment, etc.
+      Hey Hi👋 , Roshan Here. I love building , solving problems , figuring things out and learning something new everyday. I have experience in building scalable web applications incorporating best coding and security practices , scalable design patterns , microservices to deployment, etc.
       </p>
       <div
         className={`text-[rgb(98,189,139)] md:text-lg text-sm mt-7 text-[1.125rem] font-medium`}
