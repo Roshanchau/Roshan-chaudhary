@@ -37,7 +37,7 @@ const Hero = () => {
       <div
         className={`text-[rgb(98,189,139)] md:text-lg text-sm mt-7 text-[1.125rem] font-medium`}
       >
-        Currently learning java, python , go and distrubuted systems.
+        Currently learning system design, distrubuted systems, k8s, etc.
       </div>
 
       <div
