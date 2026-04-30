@@ -43,11 +43,12 @@ const Hero = () => {
       <div
         className={`flex flex-row items-center mt-8  text-[rgb(204,214,246)] gap-3 cursor-pointer ${theme === "light" ? "text-neutral-900" : ""}`}
       >
-        <p>See More About Me</p>
         <Link href={`/About`}>
+        <div className="flex items-center justify-center">See More About Me
           <span className="animate-move-arrow">
             <FaArrowRight />
           </span>
+        </div>
         </Link>
       </div>
     </div>

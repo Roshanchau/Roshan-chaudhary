@@ -4,7 +4,7 @@ export const IMAGES = {
   },
 
   placeholders: {
-    avatar: "/images/placeholders/avatar.png",
+    avatar: "/images/placeholders/avatar.jpg",
     college: "/images/placeholders/college.svg",
   },
 }

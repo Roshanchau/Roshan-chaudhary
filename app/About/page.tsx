@@ -9,23 +9,36 @@ const experiences = [
     date: "Dec 2024 - Present",
     company: "Mitra consultancy",
     title: "Backend Developer",
-    description:
-      "Developed REST APIs using Node.js, Express, Prisma ORM. Worked on database design and system architecture.",
+    description: [
+      "collaborated in Architecture and design of scalable distrubuted system for a talent showcasing social media app using both relational(PostgreSQL, MySQL) and non-relational(MongoDB) databases",
+      "used Kafka (for high throughput) for the implementation of event-driven architecture.",
+      "implemented complex features like calling with complex WebRTC implementation (used STUN/TURN servers),chat with socket.io, payments, CRON for expiring subscriptions and deleting stale records/documents, used AWS S3 for storing documents etc",
+      "Collaborated with frontend developers and participated in code reviews."
+    ],
   },
 ];
 
 const achievements = [
   {
-    date: "2025",
+    date: "2024",
     title: "Best Futuristic Implementation - IICQUEST",
-    description:
+    description: [
       "Awarded for developing VirtualSathi, a mental health platform for students.",
+    ],
+  },
+  {
+    date: "2023",
+    title: "1st Runner Up at Hackathon organized by ACES Techfest 5.0",
+    description: [
+      "Awarded for a gamified application for autistic childrens helping them to communicate easily in social environment.",
+    ],
   },
   {
     date: "2024",
-    title: "Final Year Project",
-    description:
-      "Built an AI-powered personal document assistant for intelligent document handling.",
+    title: "Local level (Itahari) NASA Space Apps winner",
+    description: [
+      "Built a web portal for wildfire prediction in nepal using NASA's provided dataset.",
+    ],
   },
 ];
 
@@ -39,6 +52,10 @@ const technologies = [
   { name: "MySQL", src: "/tech/mysql.png" },
   { name: "MongoDB", src: "/tech/mongo.png" },
   { name: "PostgresSql", src: "/tech/postgres.png" },
+  { name: "AWS", src: "/tech/AWS.png" },
+  { name: "Docker", src: "/tech/Docker.png" },
+  { name: "kafka", src: "/tech/kafka.png" },
+  { name: "NGINX", src: "/tech/NGINX.png" }
 ];
 
 const About = () => {
@@ -58,7 +75,6 @@ const About = () => {
       <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* IMAGE (move to top on mobile) */}
         <div className="flex justify-center order-1 md:order-2">
-          <div className="p-2 rounded-full bg-[rgb(133,245,218)]">
             <Image
               src={photo}
               alt="profile"
@@ -66,7 +82,6 @@ const About = () => {
               height={260}
               className="rounded-full"
             />
-          </div>
         </div>
 
         {/* TEXT */}
@@ -74,9 +89,8 @@ const About = () => {
           <p>
             Hello! My name is{" "}
             <span className={`font-semibold ${accent}`}>Roshan Chaudhary</span>.
-            Software engineer based in Kathmandu, Nepal. Just improving
-            and learning everyday. I love playing football, hiking a mountain,
-            etc.
+            Software engineer based in Kathmandu, Nepal. Just improving and
+            learning everyday. love football, hiking, etc.
           </p>
 
           <p>
@@ -104,16 +118,18 @@ const About = () => {
               <div className="ml-14">
                 <p className="text-sm text-[rgb(95,241,208)]">{exp.date}</p>
 
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold">
                   {exp.title}
                 </h3>
-                <h3 className="text-sm font-semibold text-white">
+                <h3 className="text-sm font-semibold">
                   {exp.company}
                 </h3>
 
-                <p className="text-[rgb(118,129,158)] mt-2">
-                  {exp.description}
-                </p>
+                <ul className="list-disc ml-5 mt-2 text-[rgb(118,129,158)] space-y-1">
+                  {exp.description.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
@@ -132,7 +148,11 @@ const About = () => {
               <div className="ml-14">
                 <p className={`text-sm ${accent}`}>{item.date}</p>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className={`${textColor} mt-2`}>{item.description}</p>
+                <ul className={`list-disc ml-5 mt-2 ${textColor} space-y-1`}>
+                  {item.description.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
