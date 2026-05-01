@@ -87,8 +87,8 @@ const About = () => {
         {/* TEXT */}
         <div className={`space-y-4 ${textColor} order-2 md:order-1`}>
           <p>
-            Hello! My name is{" "}
-            <span className={`font-semibold ${accent}`}>Roshan Chaudhary</span>.
+            Hey hi👋{" "}
+            <span className={`font-semibold ${accent}`}>Roshan Chaudhary</span> here.
             Software engineer based in Kathmandu, Nepal. Just improving and
             learning everyday. love football, hiking, etc.
           </p>
