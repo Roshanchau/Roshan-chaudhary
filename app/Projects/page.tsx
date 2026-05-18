@@ -35,7 +35,7 @@ const projects = [
   {
     title: "IntelliDocs",
     points: [
-      "Contributed to a document&apos;s querying chatbot enabling users to upload and query documents using natural language prompts.",
+      "Contributed to a document querying chatbot enabling users to upload and query documents using natural language prompts.",
       "Users can store legal or health-related documents and query them anytime.",
       "Implemented document processing and storage using MongoDB Atlas and AWS S3.",
     ],

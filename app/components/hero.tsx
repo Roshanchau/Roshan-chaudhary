@@ -32,7 +32,7 @@ const Hero = () => {
           theme === "light" ? "text-neutral-400" : "text-[rgb(118,129,158)]"
         }`}
       >
-      Loves building , solving problems , figuring things out and learning something new everyday. I have experience in building scalable web applications incorporating best coding and security practices , scalable design patterns , microservices to deployment, etc.
+      Loves building, solving problems, figuring things out and learning something new everyday. I have experience in building scalable web applications incorporating best coding and security practices , scalable design patterns , microservices to deployment, etc.
       </p>
       <div
         className={`text-[rgb(98,189,139)] md:text-lg text-sm mt-7 text-[1.125rem] font-medium`}
