@@ -61,6 +61,7 @@ const Page = async ({ params }: Props) => {
             <div className="text-left">
               <div className="text-base font-medium">Roshan Chaudhary</div>
               <div className="flex items-center gap-1.5 text-gray-600">
+                
                 <p>
                   {new Date(blog.publishedAt ?? "").toLocaleDateString("en-US", {
                     month: "short",
