@@ -13,12 +13,16 @@ interface VoiceAgentState {
   messages: VoiceMessage[];
   lastSpeechAt: number;
   dismissed: boolean;
+  bubbleText: string | null;
+  bubbleVisible: boolean;
   setStatus: (status: VoiceAgentStatus) => void;
   setDismissed: (dismissed: boolean) => void;
   setError: (message: string | null) => void;
   appendMessage: (role: VoiceMessageRole, content: string) => VoiceMessage;
   amendLastUserMessage: (extra: string) => void;
   markSpeechActivity: () => void;
+  showBubble: (text: string, ttlMs?: number) => void;
+  hideBubble: () => void;
   reset: () => void;
 }
 
@@ -37,12 +41,18 @@ const createMessage = (
   createdAt: Date.now(),
 });
 
+// Single shared timeout so a new showBubble call cleanly supersedes the prior
+// one instead of leaving stale auto-hide timers racing in the background.
+let bubbleHideTimer: ReturnType<typeof setTimeout> | null = null;
+
 export const useVoiceAgentStore = create<VoiceAgentState>((set, get) => ({
   status: "off",
   errorMessage: null,
   messages: [],
   lastSpeechAt: 0,
   dismissed: false,
+  bubbleText: null,
+  bubbleVisible: false,
   setStatus: (status) => set({ status }),
   setDismissed: (dismissed) => set({ dismissed }),
   setError: (errorMessage) => set({ errorMessage }),
@@ -71,11 +81,40 @@ export const useVoiceAgentStore = create<VoiceAgentState>((set, get) => ({
     });
   },
   markSpeechActivity: () => set({ lastSpeechAt: Date.now() }),
-  reset: () =>
+  showBubble: (text, ttlMs) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    if (bubbleHideTimer !== null) {
+      clearTimeout(bubbleHideTimer);
+      bubbleHideTimer = null;
+    }
+    set({ bubbleText: trimmed, bubbleVisible: true });
+    if (ttlMs && ttlMs > 0) {
+      bubbleHideTimer = setTimeout(() => {
+        bubbleHideTimer = null;
+        set({ bubbleVisible: false });
+      }, ttlMs);
+    }
+  },
+  hideBubble: () => {
+    if (bubbleHideTimer !== null) {
+      clearTimeout(bubbleHideTimer);
+      bubbleHideTimer = null;
+    }
+    set({ bubbleVisible: false });
+  },
+  reset: () => {
+    if (bubbleHideTimer !== null) {
+      clearTimeout(bubbleHideTimer);
+      bubbleHideTimer = null;
+    }
     set({
       status: "off",
       errorMessage: null,
       messages: [],
       lastSpeechAt: 0,
-    }),
+      bubbleText: null,
+      bubbleVisible: false,
+    });
+  },
 }));

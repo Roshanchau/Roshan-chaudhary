@@ -1,6 +1,6 @@
 /**
- * Time-aware startup greeting spoken once when the voice agent begins.
- * Pure functions so the wording is easy to adjust and test.
+ * Greeting spoken (and shown in the speech bubble) when the visitor first
+ * enables the voice agent. Pure function so the wording is easy to tweak.
  */
 
 /** "Good morning" / "Good afternoon" / "Good evening" based on local hour. */
@@ -11,6 +11,6 @@ export const getTimeGreeting = (date: Date): string => {
   return "Good evening";
 };
 
-/** e.g. "Good morning! I'm Groot, Roshan's voice agent." */
-export const buildGreeting = (date: Date, agentName: string): string =>
-  `${getTimeGreeting(date)}! I'm ${agentName}, Roshan's voice agent.`;
+/** Fixed warm greeting — same text spoken by TTS and shown in the bubble. */
+export const buildGreeting = (_date: Date, agentName: string): string =>
+  `Namaste, I am ${agentName}, Roshan's voice agent. How can I help you?`;

@@ -79,6 +79,7 @@ export const useVoiceAgent = (): UseVoiceAgentResult => {
   const appendMessage = useVoiceAgentStore((s) => s.appendMessage);
   const amendLastUserMessage = useVoiceAgentStore((s) => s.amendLastUserMessage);
   const markSpeechActivity = useVoiceAgentStore((s) => s.markSpeechActivity);
+  const showBubble = useVoiceAgentStore((s) => s.showBubble);
 
   if (speechRef.current === null && typeof window !== "undefined") {
     speechRef.current = createBrowserSpeech();
@@ -292,8 +293,9 @@ export const useVoiceAgent = (): UseVoiceAgentResult => {
     [processUtterance]
   );
 
-  // Spoken once when the agent starts: a time-aware self-introduction. This is
-  // the only message the agent volunteers; everything after stays reactive.
+  // Spoken once when the visitor first opens Groot: a fixed warm self-intro.
+  // The same line populates the speech bubble so the visitor can read what was
+  // said — useful if their audio is muted or they're in a noisy environment.
   const speakGreeting = useCallback(() => {
     if (!VOICE_AGENT_CONFIG.greeting.enabled) return;
     const greeting = buildGreeting(
@@ -301,8 +303,9 @@ export const useVoiceAgent = (): UseVoiceAgentResult => {
       VOICE_AGENT_CONFIG.greeting.agentName
     );
     appendMessage("assistant", greeting);
+    showBubble(greeting, VOICE_AGENT_CONFIG.ui.bubbleAutoHideMs);
     speechRef.current?.enqueue(greeting);
-  }, [appendMessage]);
+  }, [appendMessage, showBubble]);
 
   const enable = useCallback(async () => {
     if (captureRef.current?.isActive()) return;

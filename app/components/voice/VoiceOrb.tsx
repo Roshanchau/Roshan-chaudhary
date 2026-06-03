@@ -1,62 +1,37 @@
 "use client";
 
-import { FiMic, FiMicOff, FiX } from "react-icons/fi";
+import { FiMic, FiX } from "react-icons/fi";
 import { VOICE_AGENT_CONFIG } from "../../config/voiceAgent";
 import { useVoiceAgent } from "../../hooks/useVoiceAgent";
 import { useVoiceAgentStore } from "../../store/useVoiceAgentStore";
 import type { VoiceAgentStatus } from "../../types/voice.types";
+import GrootCharacter from "./GrootCharacter";
+import GrootSpeechBubble from "./GrootSpeechBubble";
 
 const ORB_PX = VOICE_AGENT_CONFIG.ui.orbSizePx;
+const CONTAINER_RIGHT_PX = 24;
+const CONTAINER_BOTTOM_PX = 24;
 
-const STATUS_STYLES: Record<
-  VoiceAgentStatus,
-  { bg: string; ring: string; pulse: boolean }
-> = {
-  off: {
-    bg: "bg-[rgba(118,129,158,0.45)]",
-    ring: "ring-0",
-    pulse: false,
-  },
-  listening: {
-    bg: "bg-[rgb(95,241,208)]",
-    ring: "ring-4 ring-[rgba(95,241,208,0.25)]",
-    pulse: false,
-  },
-  transcribing: {
-    bg: "bg-[rgb(95,200,241)]",
-    ring: "ring-4 ring-[rgba(95,200,241,0.3)]",
-    pulse: true,
-  },
-  thinking: {
-    bg: "bg-[rgb(95,200,241)]",
-    ring: "ring-4 ring-[rgba(95,200,241,0.3)]",
-    pulse: true,
-  },
-  speaking: {
-    bg: "bg-[rgb(180,140,255)]",
-    ring: "ring-4 ring-[rgba(180,140,255,0.35)]",
-    pulse: true,
-  },
-  sleeping: {
-    bg: "bg-[rgba(95,241,208,0.35)]",
-    ring: "ring-0",
-    pulse: false,
-  },
-  error: {
-    bg: "bg-red-500",
-    ring: "ring-4 ring-red-500/30",
-    pulse: false,
-  },
+// Glow / ring colour per status. The character itself reacts to status via its
+// own animations; the ring just adds a subtle ambient cue.
+const STATUS_RING: Record<VoiceAgentStatus, string> = {
+  off: "ring-0 shadow-[0_8px_24px_rgba(0,0,0,0.25)]",
+  listening: "ring-4 ring-[rgba(95,241,208,0.35)] shadow-[0_8px_30px_rgba(95,241,208,0.25)]",
+  transcribing: "ring-4 ring-[rgba(95,200,241,0.4)] shadow-[0_8px_30px_rgba(95,200,241,0.25)]",
+  thinking: "ring-4 ring-[rgba(95,200,241,0.4)] shadow-[0_8px_30px_rgba(95,200,241,0.25)]",
+  speaking: "ring-4 ring-[rgba(180,140,255,0.45)] shadow-[0_8px_30px_rgba(180,140,255,0.3)]",
+  sleeping: "ring-0 shadow-[0_6px_16px_rgba(0,0,0,0.2)]",
+  error: "ring-4 ring-red-500/40 shadow-[0_8px_30px_rgba(239,68,68,0.3)]",
 };
 
 const STATUS_LABEL: Record<VoiceAgentStatus, string> = {
-  off: "Tap to enable voice companion",
-  listening: "Listening",
-  transcribing: "Transcribing your message",
-  thinking: "Thinking",
-  speaking: "Speaking",
-  sleeping: "Resting — speak or tap to wake",
-  error: "Voice agent error — tap to retry",
+  off: "Tap Groot to start talking",
+  listening: "Groot is listening — go ahead",
+  transcribing: "Groot is listening — go ahead",
+  thinking: "Groot is thinking…",
+  speaking: "Groot is speaking — tap to stop",
+  sleeping: "Groot is resting — tap or speak to wake",
+  error: "Voice companion error — tap to retry",
 };
 
 const VoiceOrb = () => {
@@ -65,9 +40,10 @@ const VoiceOrb = () => {
   const errorMessage = useVoiceAgentStore((s) => s.errorMessage);
   const { toggle, close, reopen } = useVoiceAgent();
 
-  // Closed by the visitor: collapse to a faint button that reopens on tap.
+  // Visitor explicitly minimised: show a small chip with the mic-off icon. Tap
+  // anywhere on it to bring Groot back. This stays out of the way.
   if (dismissed) {
-    const reopenLabel = "Voice assistant closed — tap to reopen";
+    const reopenLabel = "Voice companion minimised — tap to bring Groot back";
     return (
       <button
         type="button"
@@ -76,46 +52,58 @@ const VoiceOrb = () => {
         }}
         aria-label={reopenLabel}
         title={reopenLabel}
-        className="fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(118,129,158,0.35)] text-[rgb(17,16,29)] opacity-60 shadow-[0_8px_30px_rgba(0,0,0,0.45)] transition-all hover:opacity-90 active:scale-95"
+        className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(123,196,127,0.95)] text-[rgb(17,16,29)] shadow-[0_8px_24px_rgba(0,0,0,0.3)] ring-2 ring-[rgba(63,139,81,0.6)] transition-all hover:scale-105 active:scale-95"
       >
-        <FiMicOff size={18} />
+        <FiMic size={18} />
       </button>
     );
   }
 
-  const visual = STATUS_STYLES[status];
+  const ring = STATUS_RING[status];
   const label = errorMessage ?? STATUS_LABEL[status];
 
   return (
-    <div
-      className="fixed bottom-6 right-6 z-50"
-      style={{ width: ORB_PX, height: ORB_PX }}
-    >
-      <button
-        type="button"
-        onClick={() => {
-          void toggle();
+    <>
+      <GrootSpeechBubble
+        rightPx={CONTAINER_RIGHT_PX}
+        bottomPx={CONTAINER_BOTTOM_PX + ORB_PX + 12}
+      />
+      <div
+        className="fixed z-50"
+        style={{
+          right: CONTAINER_RIGHT_PX,
+          bottom: CONTAINER_BOTTOM_PX,
+          width: ORB_PX,
+          height: ORB_PX,
         }}
-        aria-label={label}
-        title={label}
-        style={{ width: ORB_PX, height: ORB_PX }}
-        className={`rounded-full flex items-center justify-center text-[rgb(17,16,29)] shadow-[0_8px_30px_rgba(0,0,0,0.45)] transition-all active:scale-95 ${visual.bg} ${visual.ring} ${visual.pulse ? "animate-pulse" : ""} ${status === "sleeping" ? "opacity-60" : "opacity-100"}`}
       >
-        {status === "off" ? <FiMicOff size={22} /> : <FiMic size={22} />}
-      </button>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          close();
-        }}
-        aria-label="Close voice assistant"
-        title="Close voice assistant"
-        className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[rgb(40,40,55)] text-white shadow ring-1 ring-black/30 transition-all hover:bg-[rgb(60,60,80)] active:scale-95"
-      >
-        <FiX size={12} />
-      </button>
-    </div>
+        <button
+          type="button"
+          onClick={() => {
+            void toggle();
+          }}
+          aria-label={label}
+          title={label}
+          style={{ width: ORB_PX, height: ORB_PX }}
+          className={`flex items-center justify-center rounded-full bg-transparent transition-all active:scale-95 hover:scale-105 ${ring}`}
+        >
+          <GrootCharacter status={status} sizePx={ORB_PX} />
+        </button>
+
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            close();
+          }}
+          aria-label="Minimise Groot"
+          title="Minimise Groot"
+          className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-[rgb(40,40,55)] text-white shadow ring-1 ring-black/40 transition-all hover:bg-[rgb(60,60,80)] active:scale-95"
+        >
+          <FiX size={13} />
+        </button>
+      </div>
+    </>
   );
 };
 
