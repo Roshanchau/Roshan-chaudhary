@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+- Always deeply understand and analyze the provided requirement before proposing or implementing any solution
+- Carefully evaluate edge cases, failure scenarios, and refine the solution proactively to handle them
+- Follow industry best practices for API design, component architecture, and page structure to ensure scalability and maintainability
+- Ensure thread safety where applicable and design operations (especially subscriptions) to be idempotent and resilient
+- Design databases according to DBMS best practices: apply normalization, use indexes only where necessary, define proper unique constraints, and maintain clear and efficient relationships
+- Adhere strictly to SOLID principles and DRY (Don't Repeat Yourself) to maintain clean, modular, and reusable code
+- Strictly try to follow the prompts and improvies if necessary
+- give me clean , reusable , readable highest industry standard code
+- extract each config's in a seperate files and import it so that SOLID principles are intact.

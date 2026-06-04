@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"TSC=$?\")",
+      "Bash(npx next *)",
+      "PowerShell($url = 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnhnazR3cTlrNWRhdGs0ZGVzb2J1dXF2ejJiMTlibWFma3ZmNzEyNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgjUq7k2IrsZRjq/giphy.gif'; $dest = 'public\\\\groot.gif'; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; \\(Get-Item $dest\\).Length)",
+      "PowerShell($url = 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTM0eGY0cDVvbHk5MW1tcHA2aGx2a3hwbDhlN2hqZ2ZkaGl5dG1sOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pX91MuksgrLJFawwWb/giphy.gif'; $dest = 'public\\\\groot.gif'; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; \\(Get-Item $dest\\).Length)"
+    ]
+  }
+}
