@@ -4,6 +4,7 @@ import createMDX from "@next/mdx";
 const withMDX = createMDX();
 
 const nextConfig: NextConfig = {
+  transpilePackages: ['react-icons'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
   images: {

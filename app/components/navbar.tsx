@@ -10,7 +10,7 @@ const Navbar = async () => {
   return (
     <div>
       <Container>
-        <div className=" px-4 sm:px-6 lg:px-8 flex md:h-16 items-center justify-between ">
+        <div className=" px-4 mt-2 sm:px-6 lg:px-8 flex md:h-16 items-center justify-between ">
           <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
             <p className="font-bold text-xl"><TbHexagonLetterRFilled size={40}/></p>
           </Link>

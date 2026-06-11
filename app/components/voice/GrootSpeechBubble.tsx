@@ -3,14 +3,7 @@
 import { FiX } from "react-icons/fi";
 import { useVoiceAgentStore } from "../../store/useVoiceAgentStore";
 
-interface GrootSpeechBubbleProps {
-  /** Pixel offset from the right edge so the bubble lines up over the orb. */
-  rightPx: number;
-  /** Pixel offset from the bottom edge so the bubble sits above the orb. */
-  bottomPx: number;
-}
-
-const GrootSpeechBubble = ({ rightPx, bottomPx }: GrootSpeechBubbleProps) => {
+const GrootSpeechBubble = () => {
   const text = useVoiceAgentStore((s) => s.bubbleText);
   const visible = useVoiceAgentStore((s) => s.bubbleVisible);
   const hideBubble = useVoiceAgentStore((s) => s.hideBubble);
@@ -22,12 +15,10 @@ const GrootSpeechBubble = ({ rightPx, bottomPx }: GrootSpeechBubbleProps) => {
       role="status"
       aria-live="polite"
       style={{
-        right: rightPx,
-        bottom: bottomPx,
         maxWidth: "min(280px, 70vw)",
         pointerEvents: visible ? "auto" : "none",
       }}
-      className={`fixed z-50 transition-all duration-300 ease-out ${
+      className={`absolute bottom-full right-0 mb-3 z-50 transition-all duration-300 ease-out ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-2"
