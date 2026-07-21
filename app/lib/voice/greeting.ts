@@ -13,4 +13,4 @@ export const getTimeGreeting = (date: Date): string => {
 
 /** Fixed warm greeting — same text spoken by TTS and shown in the bubble. */
 export const buildGreeting = (_date: Date, agentName: string): string =>
-  `Namaste, I am ${agentName}, Roshan's voice agent. How can I help you?`;
+  `Hi, I am ${agentName}, Roshan's voice agent. How can I help you?`;

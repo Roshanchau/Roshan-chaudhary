@@ -5,6 +5,15 @@ import { useThemeStore } from "../store/useThemeStore";
 
 const projects = [
   {
+    title: "TutorSansar",
+    points: [
+      "Developed the MVP for Tutor matching platform for students and a personalised learning system.",
+      "features: auth, notification, cronJobs, redis, BullMQ, consensus, vps.",
+    ],
+    tech: ["Node.js", "Express", "next", "typescript", "Redis", "BullMQ", "VPS"],
+    link: "https://www.tutorsansar.com",
+  },
+  {
     title: "SpeakPix",
     points: [
       "Developed an interactive mobile application for people with autism, dyslexia, and learning issues to aid in social interaction and communication.",
@@ -22,15 +31,6 @@ const projects = [
     tech: ["Python", "Qiskit", "Quantum Computing"],
     link: "https://github.com/Twtamaris/quantum_tic_tac_toe",
     demo: "https://www.youtube.com/watch?v=i_VT03LhV9g",
-  },
-  {
-    title: "TutorSansar",
-    points: [
-      "Developed the MVP for Tutor matching platform for students and a personalised learning system.",
-      "features: auth, notification, cronJobs, redis, BullMQ, consensus, vps.",
-    ],
-    tech: ["Node.js", "Express", "next", "typescript", "Redis", "BullMQ", "VPS"],
-    link: "https://www.tutorsansar.com",
   },
   {
     title: "IntelliDocs",

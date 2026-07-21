@@ -45,7 +45,7 @@ const achievements = [
 const technologies = [
   { name: "JavaScript", src: "/tech/js.png" },
   { name: "TypeScript", src: "/tech/ts.png" },
-  { name: "React", src: "/tech/react.png" },
+  { name: "React", src: "/tech/React.png" },
   { name: "Next.js", src: "/tech/next.png" },
   { name: "Node.js", src: "/tech/node.png" },
   { name: "Express", src: "/tech/express.png" },
