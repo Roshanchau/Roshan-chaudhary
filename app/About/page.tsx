@@ -13,7 +13,7 @@ const experiences = [
       "collaborated in Architecture and design of scalable distrubuted system for a talent showcasing social media app using both relational(PostgreSQL, MySQL) and non-relational(MongoDB) databases",
       "used Kafka (for high throughput) for the implementation of event-driven architecture.",
       "implemented complex features like calling with complex WebRTC implementation (used STUN/TURN servers),chat with socket.io, payments, CRON for expiring subscriptions and deleting stale records/documents, used AWS S3 for storing documents etc",
-      "Collaborated with frontend developers and participated in code reviews."
+      "Collaborated with frontend developers and participated in code reviews as well as mentored interns"
     ],
   },
 ];
