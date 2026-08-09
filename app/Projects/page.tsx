@@ -7,8 +7,9 @@ const projects = [
   {
     title: "TutorSansar",
     points: [
-      "Developed the MVP for Tutor matching platform for students and a personalised learning system.",
-      "features: auth, notification, cronJobs, redis, BullMQ, consensus, vps.",
+      "Developed the MVP for a tutor matching platform for students and a personalised learning system.",
+      "Features: auth, notification, cron jobs, VPS.",
+      "Onboarded 100+ users"
     ],
     tech: ["Node.js", "Express", "next", "typescript", "Redis", "BullMQ", "VPS"],
     link: "https://www.tutorsansar.com",
@@ -17,7 +18,7 @@ const projects = [
     title: "SpeakPix",
     points: [
       "Developed an interactive mobile application for people with autism, dyslexia, and learning issues to aid in social interaction and communication.",
-      "Utilized React Native for cross-platform mobile development and gpt-2 LLM for next-word prediction.",
+      "Utilised React Native for cross-platform mobile development and GPT-2 LLM for next-word prediction.",
     ],
     tech: ["React Native", "Flask", "GPT-2","redis", "NLP"],
     link: "https://github.com/Roshanchau/autism-app",
@@ -35,9 +36,10 @@ const projects = [
   {
     title: "IntelliDocs",
     points: [
+      "Co-authored and published in the Journal of Engineering Issues and Solutions, Vol. 5, No. 2 (2026).",
       "Contributed to a document querying chatbot enabling users to upload and query documents using natural language prompts.",
       "Users can store legal or health-related documents and query them anytime.",
-      "Implemented document processing and storage using MongoDB Atlas and AWS S3.",
+      "Implemented document processing and storage using MongoDB and AWS S3.",
     ],
     tech: ["MongoDB Atlas", "AWS S3", "fast api", "NLP"],
     link: "https://github.com/Roshanchau/IntelliDocs",

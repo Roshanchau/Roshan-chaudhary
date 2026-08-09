@@ -10,27 +10,29 @@ const experiences = [
     company: "Mitra consultancy",
     title: "Backend Developer",
     description: [
-      "collaborated in Architecture and design of scalable distrubuted system for a talent showcasing social media app using both relational(PostgreSQL, MySQL) and non-relational(MongoDB) databases",
-      "used Kafka (for high throughput) for the implementation of event-driven architecture.",
-      "implemented complex features like calling with complex WebRTC implementation (used STUN/TURN servers),chat with socket.io, payments, CRON for expiring subscriptions and deleting stale records/documents, used AWS S3 for storing documents etc",
-      "Collaborated with frontend developers and participated in code reviews as well as mentored interns"
+      "Collaborated in the architecture and design of  a scalable distributed system for a talent showcasing social media app using both relational (PostgreSQL, MySQL) and non-relational (MongoDB) databases",
+      "Implemented Kafka-based event-driven architecture (pub/sub).",
+      "Implemented real-time communication features, including WebRTC-based audio/video calling with STUN/TURN servers and real-time chat using Socket.IO; developed payment workflows, scheduled cron jobs for subscription expiration and stale-record cleanup, and integrated AWS S3 for document storage.",
+      "Handled 3 independently deployable microservices for payments, customer management and media services.",
+      "Developed and maintained clean, reusable code following established coding standards and best practices, contributing to a custom internal library.",
+      "Collaborated with frontend developers, participated in code reviews, and mentored interns to improve code quality and development practices."
     ],
   },
 ];
 
 const achievements = [
+    {
+    date: "2023",
+    title: "1st Runner Up at Hackathon organized by ACES Techfest 5.0",
+    description: [
+      "Awarded for a gamified application for autistic childrens helping them to communicate easily in social environment.",
+    ],
+  },
   {
     date: "2024",
     title: "Best Futuristic Implementation - IICQUEST",
     description: [
       "Awarded for developing VirtualSathi, a mental health platform for students.",
-    ],
-  },
-  {
-    date: "2023",
-    title: "1st Runner Up at Hackathon organized by ACES Techfest 5.0",
-    description: [
-      "Awarded for a gamified application for autistic childrens helping them to communicate easily in social environment.",
     ],
   },
   {
@@ -40,6 +42,16 @@ const achievements = [
       "Built a web portal for wildfire prediction in nepal using NASA's provided dataset.",
     ],
   },
+];
+
+const publications = [
+    {
+    date: "2026",
+    title: "Intelli-Docs: An AI-Powered Personal Document Assistant Using Retrieval-Augmented Generation and Multimodal Retrieval",
+    description: [
+      "Co-authored and published with Prashant Bhattarai, Saurab Baral, and Kritika Thapa in the Journal of Engineering Issues and Solutions, Vol. 5, No. 2 (2026).",
+    ],
+  }
 ];
 
 const technologies = [
@@ -148,6 +160,29 @@ const About = () => {
               <div className="ml-14">
                 <p className={`text-sm ${accent}`}>{item.date}</p>
                 <h3 className="text-lg font-semibold">{item.title}</h3>
+                <ul className={`list-disc ml-5 mt-2 ${textColor} space-y-1`}>
+                  {item.description.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Publications */}
+      <div className="max-w-4xl w-full">
+        <h2 className={`text-2xl font-semibold mb-10 text-center ${accent}`}>
+          Publications
+        </h2>
+
+        <div className="relative border-l border-gray-400/30 pl-8 space-y-10">
+          {publications.map((item, i) => (
+            <div key={i} className="relative">
+              <div className="ml-14">
+                <p className={`text-sm ${accent}`}>{item.date}</p>
+                <a href="https://www.nepjol.info/index.php/joeis/article/view/97808" className="hover:underline"><h3 className="text-lg font-semibold">{item.title}</h3></a>
                 <ul className={`list-disc ml-5 mt-2 ${textColor} space-y-1`}>
                   {item.description.map((point, idx) => (
                     <li key={idx}>{point}</li>

@@ -105,7 +105,7 @@ const MainNav: React.FC<MainNavProps> = ({ label }) => {
               ))}
 
               <a
-                href="../roshan_new_cv.pdf"
+                href="../roshan-cv.pdf"
                 className="flex items-center gap-2 text-base font-medium hover:text-neutral-400"
               >
                 Download CV <Download size={18} />
