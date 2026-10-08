@@ -6,7 +6,7 @@ import { useThemeStore } from "../store/useThemeStore";
 
 const experiences = [
   {
-    date: "Dec 2024 - Present",
+    date: "Dec 2024 - Aug 2026",
     company: "Mitra consultancy",
     title: "Backend Developer",
     description: [
