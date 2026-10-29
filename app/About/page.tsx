@@ -106,7 +106,7 @@ const About = () => {
           </p>
 
           <p>
-            I have <span className="font-medium">1.5 years</span> of experience
+            I have <span className="font-medium">1.9 years</span> of experience
             in backend development who can do full-stack development as well.
           </p>
 
