@@ -12,7 +12,7 @@ const projects = [
       "Onboarded 100+ users"
     ],
     tech: ["Node.js", "Express", "next", "typescript", "Redis", "BullMQ", "VPS"],
-    link: "https://www.tutorsansar.com",
+    link: "https://tutorsansar.vercel.app",
   },
   {
     title: "SpeakPix",
