@@ -9,7 +9,9 @@ const projects = [
     points: [
       "Developed the MVP for a tutor matching platform for students and a personalised learning system.",
       "Features: auth, notification, cron jobs, VPS.",
-      "Onboarded 100+ users"
+      "Onboarded 100+ users",
+      "Discontinued active development after early market validation showed limited user acquisition and insufficient product-market fit.",
+      "Learnings: validate before development, ship fast, iterate faster, move to next product instantly."
     ],
     tech: ["Node.js", "Express", "next", "typescript", "Redis", "BullMQ", "VPS"],
     link: "https://tutorsansar.vercel.app",
@@ -45,6 +47,16 @@ const projects = [
     link: "https://github.com/Roshanchau/IntelliDocs",
     demo: "https://drive.google.com/drive/folders/1U2gKv3JM0zZHOZPpkldFyWz9SFlXc8g1",
   },
+  {
+  title: "Mushin",
+  points: [
+    "Developed a lightweight Aspect-Oriented Programming (AOP) logging library for Node.js applications using TypeScript.",
+    "Implemented decorator-based logging with support for method arguments, return values, execution time, and contextual metadata.",
+    "Designed an extensible logging architecture supporting structured logging and integration with popular logging frameworks."
+  ],
+  tech: ["Node.js", "TypeScript", "AOP", "Pino", "Winston"],
+  link: "https://github.com/Roshanchau/mushin",
+}
 ];
 
 const Projects = () => {
